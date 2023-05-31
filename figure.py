@@ -1,34 +1,44 @@
 '''
-선분을 나타내는 클래스 line과
-정사각형, 원, 정삼각형의 넓이를 구하는 함수들을 정의한 모듈
+width 와 height 값을 가지는 클래스 line과
+직사각형, 타원, 직각삼각형의 넓이를 구하는 함수들을 정의한 모듈
 '''
 
 import math
 
 class line:
-    '''길이(length)를 가지는 선분'''
-    __length = 0
+    '''넓이(__width)와 높이(__height)변수 존재'''
+    __width,__height = 0,0
 
-    def __init__(self, length):
-        '''길이(length)를 초기화'''
-        self.__length = length
+    def __init__(self, __width, __height):
+        '''넓이(__width)와 높이(__height) 초기화'''
+        self.__width = __width
+        self.__height = __height
 
     def get_length(self):
-        '''길이(length)를 반환'''
-        return self.__length
+        '''넓이(__width)와 높이(__height) 반환'''
+        return self.__width,self.__height
     
-    def set_length(self,length):
+    def set_length(self,__width,__height):
         '''길이(length)를 설정'''
-        self.__length = length
+        self.__width = __width
+        self.__height = __height
 
-def area_square(length):
-    '''length * length 의 정사각형 넓이를 반환'''
-    return length * length
+def check_value(width,height):
+    ''' width와 height 값이 0 이하일 경우 ValueError를 발생'''
+    if width <= 0 or height <= 0:
+        raise ValueError
 
-def area_circle(length):
-    '''3.14 * length * length * pi 의 원의 넓이를 반환'''
-    return length * length * math.pi
+def area_rectangle(width, height):
+    ''' width와 height를 매개변수로 받아, width * height의 직사각형의 넓이를 반환한다.'''
+    check_value(width,height)
+    return width * height
 
-def area_regular_triangle(length):
-    '''length * length * math.sqrt(3) / 4 의 정삼각형 넓이를 반환'''
-    return length * length * math.sqrt(3) / 4
+def area_ellipse(width,height):
+    ''' width와 height를 매개변수로 받아, width * height * pi의 타원의 넓이를 반환한다.'''
+    check_value(width,height)
+    return width * height * math.pi
+
+def area_right_triangle(width,height):
+    ''' width와 height를 매개변수로 받아, width * height / 2의 직각삼각형의 넓이를 반환한다.'''
+    check_value(width,height)
+    return width * height / 2
